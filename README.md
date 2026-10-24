@@ -17,6 +17,20 @@ Open `scripts/01_tank_intro.qmd` in RStudio and work through it from top to bott
 - Install [R](https://cran.r-project.org/) and [RStudio Desktop](https://posit.co/download/rstudio-desktop/)
 - Create a [GitHub](https://github.com/) account
 - Install the tidyverse by running `install.packages("tidyverse")` in the RStudio console
+- Make sure [Quarto](https://quarto.org/docs/get-started/) is available. Recent versions of RStudio include it, so the **Render** button should work right away.
+
+## Get your own copy
+
+This repository is a **template**. Each person makes their own copy, so you can save your work without changing anyone else's.
+
+1. Click the green **Use this template** button near the top of this page, then **Create a new repository**.
+2. Set **Owner** to your GitHub account and name it `stier-coding-session-one`.
+3. Choose **Public**, then click **Create repository**.
+4. On your new repository's page, click the green **Code** button and copy the link that starts with `https://`.
+5. In RStudio, go to **File**, then **New Project**, then **Version Control**, then **Git**. Paste the link into **Repository URL** and click **Create Project**.
+6. Open `scripts/01_tank_intro.qmd` from the **Files** tab and start working.
+
+When you commit and push, your work goes to **your** copy on GitHub.
 
 ## The data
 
