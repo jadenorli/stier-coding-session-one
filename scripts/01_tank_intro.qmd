@@ -1,0 +1,245 @@
+---
+title: "Session 1: Getting to Know Our Reef Tank"
+subtitle: "Stier Lab Coding Sessions"
+author: "Your Name"
+format:
+  html:
+    toc: true
+    embed-resources: true
+execute:
+  error: true
+  warning: false
+---
+
+## How to use this document
+
+This is a **Quarto document**. It mixes regular text (like this) with **code chunks** (the gray boxes). You can run code three ways:
+
+| To run | Do this |
+|---|---|
+| One line | Put your cursor on the line and press **Command + Enter** (Mac) or **Control + Enter** (Windows) |
+| A whole chunk | Click the green ▶ arrow in the top right corner of the chunk |
+| The whole document | Click **Render** at the top of this panel. This makes a web page (HTML) of your work. |
+
+When you see `____` (a blank), replace it with your own code. Type your answers to the **Questions** in the space below each one, as regular text.
+
+The data are readings every 10 minutes from October 9 to October 23, 2026, recorded by the tank's Apex controller. See the `README.md` file for what each column means.
+
+## Part 1: Load packages and data
+
+Packages are add-ons that give R extra tools. You only install them once, but you load them with `library()` every time you open R. If you have not installed the tidyverse yet, run `install.packages("tidyverse")` once in the **Console** (bottom left), not in this document.
+
+```{r}
+library(tidyverse)
+```
+
+Next, read the tank data into R and store it as an object called `tank`. The arrow `<-` means "save the thing on the right under the name on the left."
+
+The `../` means "go up one folder." This document lives in the `scripts` folder, so R has to go up one level to find the `data` folder.
+
+```{r}
+tank <- read_csv("../data/tank_data.csv")
+```
+
+## Part 2: Look at the data
+
+See the first six rows:
+
+```{r}
+head(tank)
+```
+
+How many rows (readings) and columns (variables) are there?
+
+```{r}
+nrow(tank)
+ncol(tank)
+```
+
+What are the column names?
+
+```{r}
+names(tank)
+```
+
+Get a quick summary of every column:
+
+```{r}
+summary(tank)
+```
+
+You can also open the whole table in a spreadsheet-style viewer by typing `View(tank)` in the **Console**, or by clicking `tank` in the **Environment** panel (top right).
+
+### Question 1
+
+How many readings are in this dataset? If the Apex records one reading every 10 minutes, roughly how many days does that cover?
+
+**Answer:**
+
+## Part 3: Ask the data questions
+
+The `$` symbol pulls one column out of a table:
+
+```{r}
+head(tank$temperature)
+```
+
+Functions take something in and give something back:
+
+```{r}
+mean(tank$temperature)
+min(tank$temperature)
+max(tank$temperature)
+```
+
+### Question 2
+
+What was the average pH? The lowest? The highest? Fill in the blanks, then run the chunk.
+
+```{r}
+mean(tank$____)
+min(tank$____)
+max(tank$____)
+```
+
+**Answer:**
+
+### Question 3
+
+Reef tanks are usually kept between 76 and 80 degrees Fahrenheit. Did our tank ever leave that range?
+
+**Answer:**
+
+## Part 4: Your first plot
+
+`ggplot` builds plots in layers:
+
+- `ggplot(data, aes(x = ..., y = ...))` says **what** to plot
+- `+ geom_line()` says **how** to draw it
+
+```{r}
+ggplot(tank, aes(x = datetime, y = temperature)) +
+  geom_line()
+```
+
+Make it nicer with labels:
+
+```{r}
+ggplot(tank, aes(x = datetime, y = temperature)) +
+  geom_line(color = "steelblue") +
+  labs(x = "Date",
+       y = "Temperature (degrees Fahrenheit)",
+       title = "Stier Lab tank temperature") +
+  theme_minimal()
+```
+
+**Your turn:** copy the plot above into the chunk below and change it to show pH instead. Remember to update the y-axis label and title too!
+
+```{r}
+
+```
+
+## Part 5: Tank detective
+
+Something unusual happened in the tank around October 21 and 22. Look back at your temperature plot. Do you see it?
+
+Some background on how the tank is set up:
+
+- The **display tank** (where the corals live) holds the **heater**.
+- The **sump** (the tank underneath) holds the **temperature probe**.
+- The **return pump** pushes water from the sump up to the display, and the water drains back down into the sump. When the pump stops, the two tanks stop mixing.
+
+Plot how much power the return pump used:
+
+```{r}
+ggplot(tank, aes(x = datetime, y = return_pump_watts)) +
+  geom_line() +
+  theme_minimal()
+```
+
+### Question 4
+
+What happened to the return pump? Roughly when did it stop and start again?
+
+**Answer:**
+
+### Question 5
+
+During the outage, the temperature reading slowly dropped. Then, within 10 minutes of the pump coming back on, it suddenly jumped **up** by almost 3 degrees. Why do you think that happened?
+
+*Hint: think about where the heater is and where the probe is.*
+
+**Answer:**
+
+Now plot `heater_watts` over time. Does it support your explanation?
+
+```{r}
+
+```
+
+### Question 6
+
+The Apex turns the heater on whenever the probe reads too cold. How often was the heater on during the outage compared to a normal day? What might that have done to the corals in the display tank?
+
+**Answer:**
+
+## Part 6: Day and night
+
+The `hour` column tells you the hour of the day (0 is midnight, 13 is 1 p.m.). This plots every light reading by hour of the day:
+
+```{r}
+ggplot(tank, aes(x = hour, y = light_watts)) +
+  geom_point(alpha = 0.2) +
+  theme_minimal()
+```
+
+### Question 7
+
+When do the lights turn on and off? When are they brightest?
+
+**Answer:**
+
+Now make the same kind of plot for `orp` (oxidation reduction potential, a measure of how well the water can break down waste). Fill in the blank:
+
+```{r}
+ggplot(tank, aes(x = hour, y = ____)) +
+  geom_point(alpha = 0.2) +
+  theme_minimal()
+```
+
+### Question 8
+
+What happens to `orp` when the lights come on in the morning?
+
+**Answer:**
+
+## Challenges (if you finish early)
+
+**A.** Plot `alkalinity` over time. The Trident tester only measures it every 6 hours, which is why the line looks like stairs. What trend do you see?
+
+```{r}
+
+```
+
+**B.** Plot `temperature` (x) against `salinity` (y) with `geom_point()`. Should water temperature change how salty the water is? What might be going on with the salinity probe?
+
+```{r}
+
+```
+
+**C.** Calculate the average temperature for each hour of the day:
+
+```{r}
+tank |>
+  group_by(hour) |>
+  summarize(mean_temperature = mean(temperature))
+```
+
+## Last step: save your work to GitHub
+
+1. Change `author: "Your Name"` at the very top of this document to your name.
+2. Click **Render** to make sure everything runs. Any red error messages in the rendered page point to chunks to fix.
+3. Save this file (**Command + S** or **Control + S**).
+4. In the **Git** tab (top right of RStudio), check the box next to `01_tank_intro.qmd`.
+5. Click **Commit**, write a short message like "Finished session 1 activity," and click **Commit** again.
+6. Click **Push** (the green up arrow).
