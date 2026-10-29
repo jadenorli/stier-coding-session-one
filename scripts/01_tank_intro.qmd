@@ -6,6 +6,10 @@ format:
   html:
     toc: true
     embed-resources: true
+    css: ../assets/marine-theme.css
+    include-in-header:
+      text: |
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Playfair+Display:wght@500;700&display=swap">
 execute:
   error: true
   warning: false

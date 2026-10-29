@@ -32,6 +32,14 @@ This repository is a **template**. Each person makes their own copy, so you can 
 
 When you commit and push, your work goes to **your** copy on GitHub.
 
+## What is in this repository
+
+| Folder or file | What it holds |
+|---|---|
+| `scripts/01_tank_intro.qmd` | The activity you work through |
+| `data/tank_data.csv` | The tank data |
+| `assets/marine-theme.css` | The colors and fonts for your rendered page. You do not need to edit it. |
+
 ## The data
 
 `data/tank_data.csv` holds 2,123 readings recorded every 10 minutes from October 9 to October 23, 2026 by the tank's Neptune Apex controller. Each row is one moment in time.
