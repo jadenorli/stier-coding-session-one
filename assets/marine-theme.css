@@ -1,0 +1,157 @@
+/* ============================================================================
+   marine-theme.css: a small theme for Stier Lab coding session reports
+
+   A trimmed copy of the look of jadenorli.github.io (styles.css), keeping
+   only what a rendered Quarto report uses: fonts, colors, headings, links,
+   code blocks, tables, and the table of contents. Section numbers in
+   brackets point to the matching section of the website's styles.css.
+
+   Students do not need to edit this file.
+============================================================================ */
+
+/* Fonts [section 0]: Inter for body text, Playfair Display for headings.
+   They are loaded by a <link> tag in each document's YAML header
+   (include-in-header), not by @import here. When Quarto bundles a page into
+   one file (embed-resources), it strips the semicolon after an @import, which
+   makes browsers skip the color tokens right below it. */
+
+/* Design tokens [section 1]: change a color here and it changes everywhere. */
+:root{
+  --marine-bg:#E6F1F5;              /* Page background: pale blue-gray */
+  --marine-ink:#2E3C43;             /* Primary text: near-black slate */
+  --marine-ink-soft:#43535B;        /* Secondary text */
+  --marine-teal-1:#A3C3BD;          /* Lightest teal */
+  --marine-teal-2:#688D8D;          /* Mid teal: hover states */
+  --marine-teal-3:#4D6C77;          /* Dark teal */
+  --marine-link:#537188;            /* Link color */
+  --marine-sand:#F5F7F9;            /* Off-white: code blocks */
+  --marine-coral:#D1796B;           /* The one warm accent */
+  --marine-coral-tint:#F7ECEA;      /* Coral mixed most of the way to white */
+  --marine-coral-edge:rgba(209,121,107,.38);
+  --marine-border:#e5e7eb;          /* Hairline gray for borders */
+  --marine-shadow:rgba(0,0,0,.06);  /* Standard shadow tint */
+}
+
+/* Global [section 2] */
+body{
+  font-family:'Inter',ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif !important;
+  background:var(--marine-bg);
+  color:var(--marine-ink);
+  font-size:18px;
+  line-height:1.6;
+}
+
+h1,h2,h3,h4,h5,h6,
+.title{
+  font-family:'Playfair Display',Georgia,serif !important;
+  font-weight:700;
+  letter-spacing:.5px;
+  color:var(--marine-ink);
+}
+
+.subtitle{ color:var(--marine-ink-soft); }
+
+/* A coral underline under each main section, echoing the site's accent */
+h2{
+  border-bottom:2px solid var(--marine-coral-edge) !important;
+  padding-bottom:.3rem;
+}
+
+a{ color:var(--marine-link); text-decoration:none; }
+a:hover{ color:var(--marine-teal-2); text-decoration:underline; }
+a:focus-visible{ outline:3px solid var(--marine-coral); outline-offset:2px; }
+
+/* Code [section 6]: inline code chips and code blocks with a teal spine */
+code{
+  background:var(--marine-sand);
+  color:var(--marine-ink);
+  border-radius:.5rem;
+}
+div.sourceCode,
+pre.sourceCode{
+  background:var(--marine-sand) !important;
+  border:0 !important;
+  border-left:3px solid var(--marine-teal-1) !important;
+  border-radius:.25rem;
+}
+pre code{ background:transparent; }
+
+/* Code output: white so it reads as a result, not as code to type */
+.cell-output pre{
+  background:#fff;
+  border:1px solid var(--marine-border);
+  border-radius:.25rem;
+  padding:.6rem .75rem;
+}
+
+/* Error output: coral, so a missed blank is easy to spot */
+.cell-output-error pre{
+  background:var(--marine-coral-tint);
+  border:1px solid var(--marine-coral-edge);
+}
+
+/* Plots: a white card, like the site's figure tiles */
+.cell-output-display img{
+  background:#fff;
+  border:1px solid var(--marine-border);
+  border-radius:.5rem;
+  box-shadow:0 1px 6px var(--marine-shadow);
+  padding:.5rem;
+}
+
+/* Tables [sections 14 and 32]: the site's table card look, applied to every
+   Markdown table so nothing needs a wrapper div */
+main table{
+  background:#fff;
+  border:1px solid var(--marine-border) !important;
+  border-radius:.75rem;
+  border-collapse:separate !important;
+  border-spacing:0;
+  overflow:hidden;
+  box-shadow:0 1px 6px var(--marine-shadow);
+  font-size:.92rem;
+}
+main thead th{
+  background:var(--marine-coral-tint);
+  border:0 !important;
+  border-bottom:1px solid var(--marine-coral-edge) !important;
+  font-size:.74rem;
+  font-weight:700;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  padding:.65rem .9rem !important;
+}
+main tbody td{
+  border:0 !important;
+  border-top:1px solid var(--marine-border) !important;
+  color:var(--marine-ink-soft);
+  padding:.65rem .9rem !important;
+}
+main tbody tr:first-child td{ border-top:0 !important; }
+main tbody tr:nth-child(even) td{ background:#F7FAFB; }
+main tbody td:first-child{ font-weight:600; color:var(--marine-ink); }
+
+/* Table of contents [section 13]: coral marks the section in view.
+   #TOC (an id) is included because Quarto's own rules use it, and an id
+   selector outranks the attribute selector alone. */
+#TOC .nav-link,
+nav[role="doc-toc"] .nav-link{ color:var(--marine-ink); }
+#TOC .nav-link:hover,
+nav[role="doc-toc"] .nav-link:hover{ color:var(--marine-teal-2); text-decoration:none; }
+#TOC .nav-link.active,
+nav[role="doc-toc"] .nav-link.active{
+  color:var(--marine-coral) !important;
+  font-weight:700;
+  background:color-mix(in srgb, var(--marine-coral) 14%, transparent) !important;
+  border-left:3px solid var(--marine-coral) !important;
+  padding-left:.5rem;
+  border-radius:.25rem;
+}
+#toc-title{
+  font-family:'Inter',ui-sans-serif,system-ui,sans-serif !important;
+  border-bottom:0 !important;       /* Not a section heading, so no underline */
+  font-size:.8rem;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  color:var(--marine-ink-soft);
+}
