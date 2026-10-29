@@ -153,16 +153,19 @@ This can take 5 to 10 minutes. Let it run while we keep going.
 
 ## Step 6: Tell Git who you are
 
-In the **Console**, paste this, with **your** name and the **email you used for GitHub**:
+In the **Console**, paste this, then change my name and email to **yours**:
 
 ```r
 usethis::use_git_config(
-  user.name = "Your Name",
-  user.email = "you@example.com"
+  user.name = "Jaden Orli",
+  user.email = "jadenorli@gmail.com"
 )
 ```
 
-This labels every change you save with your name, so collaborators know who made it.
+| Setting | Use |
+|---|---|
+| `user.name` | Your **first and last name**, with a space (not your GitHub username) |
+| `user.email` | The **same email you used for GitHub**, so your work links to your profile |
 
 ## Step 7: Connect RStudio to GitHub
 
