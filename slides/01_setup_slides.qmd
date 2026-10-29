@@ -56,7 +56,7 @@ Key idea: R and RStudio are separate installs. Git and GitHub are also separate:
 
 ## Mac users: start this first
 
-Git takes the longest to install on a Mac, so start it now and let it run while we do everything else.
+Git takes the longest to install, so start it now and let it run.
 
 1. Open the **Terminal** app (press **Command + Space** and type "Terminal")
 2. Paste this and press **Return**:
@@ -68,7 +68,7 @@ xcode-select --install
 3. Click **Install** in the window that pops up, and accept the license
 
 ::: {.check-box}
-If it says **"command line tools are already installed,"** you already have Git.
+Says **"already installed"**? You already have Git!
 :::
 
 ::: notes
@@ -97,12 +97,14 @@ Go to **<https://posit.co/download/rstudio-desktop/>**
 
 1. Skip step 1 on that page (you just installed R)
 2. Click the big **Download RStudio Desktop** button
-3. Open the file and install it
-   - **Mac:** drag RStudio into your **Applications** folder
-   - **Windows:** click through the installer with the default options
+3. Open the file and install it. **Mac:** drag RStudio into **Applications**. **Windows:** use the default options.
 
 ::: {.check-box}
-**Check:** open RStudio. You should see the **Console** with a line like `R version 4.5...`
+**Check:** open RStudio. The **Console** (bottom left) should start with a line like mine (yours may be newer):
+
+```
+R version 4.4.1 (2024-06-14) -- "Race for Your Life"
+```
 :::
 
 ## Step 3: Install Git
@@ -150,6 +152,18 @@ install.packages(c("tidyverse", "usethis"))
 ::: {.small}
 This can take 5 to 10 minutes. Let it run while we keep going.
 :::
+
+## Check: did the packages install?
+
+When the install finishes, run this in the **Console**:
+
+```r
+library(tidyverse)
+```
+
+Here's what it looks like for me. The **Conflicts** note at the bottom is normal.
+
+![](images/check_tidyverse.png){fig-align="center" width="75%"}
 
 ## Step 6: Tell Git who you are
 
@@ -244,6 +258,16 @@ Open `scripts/01_tank_intro.qmd` from the **Files** tab and click **Render**. A 
 Red or coral error boxes at the blanks are expected before students fill them in.
 :::
 
+## What it looks like for me
+
+After running Part 1, `tank` appears in the **Environment** panel (top right), with your project name above it:
+
+![](images/check_project_environment.png){fig-align="center" width="58%"}
+
+And `read_csv()` reports what it loaded:
+
+![](images/check_project_console.png){fig-align="center" width="86%"}
+
 ## The data: our reef tank
 
 - The tank's **Apex** controller records readings **every 10 minutes**
@@ -277,6 +301,16 @@ Git saves work in two steps: **commit** (save a snapshot on your computer) and *
 
 ::: {.check-box}
 **Check:** refresh your repository page on GitHub. Your changes should be there.
+:::
+
+## What a successful push looks like
+
+Here's mine. The last line, ending in `main -> main`, means it worked.
+
+![](images/check_push.png){fig-align="center" width="85%"}
+
+::: {.small}
+If you used the **Push** button, the same text appears in a small window. Close it when you see `main -> main`.
 :::
 
 ## When things go wrong

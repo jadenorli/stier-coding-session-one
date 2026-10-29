@@ -24,6 +24,22 @@ $code-block-bg: $marine-sand;
 $code-color: $marine-ink;
 
 /*-- scss:rules --*/
+// Vertical spacing: give code blocks, tables, boxes, and images room to
+// breathe so they do not stack directly on top of each other
+.reveal .slides section > div.sourceCode,
+.reveal .slides section > pre,
+.reveal .slides section div.sourceCode { margin: .55em 0 .7em 0; }
+.reveal .slides section table { margin: .55em auto .8em auto; }
+.reveal .slides section .callout-box,
+.reveal .slides section .check-box { margin: .9em 0 .4em 0; }
+.reveal .slides section .callout-box > *,
+.reveal .slides section .check-box > * { margin: .35em 0; }
+.reveal .slides section .small { margin-top: .7em; display: block; }
+.reveal .slides section p { margin: .45em 0; }
+.reveal .slides section ol, .reveal .slides section ul { margin: .3em 0 .5em 0; }
+.reveal .slides section li { margin: .18em 0; }
+.reveal .slides section img { border-radius: .5rem; box-shadow: 0 2px 10px rgba(0,0,0,.12); margin-top: .3em; }
+
 .reveal h1, .reveal h2, .reveal h3 { letter-spacing: .5px; }
 
 // A coral rule under each slide title, like the section headings on the site
@@ -45,7 +61,8 @@ $code-color: $marine-ink;
 .reveal code { color: $marine-ink; }
 
 // Larger code, so it can be read from the back of the room
-.reveal div.sourceCode pre code { font-size: 1.15em; line-height: 1.4; }
+.reveal div.sourceCode pre code,
+.reveal .slides section pre code { font-size: 1.15em; line-height: 1.4; }
 
 // Tables in the site's table card style
 .reveal table {
