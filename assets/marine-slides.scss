@@ -1,0 +1,90 @@
+/*-- scss:defaults --*/
+// Slide theme for Stier Lab coding sessions, matching jadenorli.github.io.
+// Fonts are loaded by a <link> tag in the slide deck's YAML header.
+
+$marine-bg: #E6F1F5;
+$marine-ink: #2E3C43;
+$marine-ink-soft: #43535B;
+$marine-teal-1: #A3C3BD;
+$marine-teal-2: #688D8D;
+$marine-teal-3: #4D6C77;
+$marine-link: #537188;
+$marine-sand: #F5F7F9;
+$marine-coral: #D1796B;
+$marine-coral-tint: #F7ECEA;
+
+$body-bg: $marine-bg;
+$body-color: $marine-ink;
+$link-color: $marine-link;
+$font-family-sans-serif: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$presentation-heading-font: "Playfair Display", Georgia, serif;
+$presentation-heading-color: $marine-ink;
+$presentation-font-size-root: 34px;
+$code-block-bg: $marine-sand;
+$code-color: $marine-ink;
+
+/*-- scss:rules --*/
+.reveal h1, .reveal h2, .reveal h3 { letter-spacing: .5px; }
+
+// A coral rule under each slide title, like the section headings on the site
+.reveal h2 {
+  border-bottom: 3px solid rgba(209,121,107,.45);
+  padding-bottom: .25rem;
+  margin-bottom: .8rem;
+}
+
+.reveal .slide-number { color: $marine-ink-soft; }
+
+// Code blocks with the site's teal spine
+.reveal div.sourceCode, .reveal pre.sourceCode {
+  background: $marine-sand !important;
+  border: 0 !important;
+  border-left: 4px solid $marine-teal-1 !important;
+  border-radius: .25rem;
+}
+.reveal code { color: $marine-ink; }
+
+// Larger code, so it can be read from the back of the room
+.reveal div.sourceCode pre code { font-size: 1.15em; line-height: 1.4; }
+
+// Tables in the site's table card style
+.reveal table {
+  background: #fff;
+  border-radius: .6rem;
+  overflow: hidden;
+  font-size: .72em;
+  box-shadow: 0 1px 6px rgba(0,0,0,.06);
+}
+.reveal table th {
+  background: $marine-coral-tint;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-size: .8em;
+  border-bottom: 1px solid rgba(209,121,107,.38) !important;
+}
+.reveal table td { color: $marine-ink-soft; }
+.reveal table td:first-child { font-weight: 600; color: $marine-ink; }
+
+// Small helpers used in the deck
+.reveal .coral { color: $marine-coral; font-weight: 700; }
+.reveal .small { font-size: .7em; color: $marine-ink-soft; }
+.reveal .callout-box {
+  background: #fff;
+  border-left: 5px solid $marine-coral;
+  border-radius: .6rem;
+  padding: .6em .9em;
+  box-shadow: 0 1px 6px rgba(0,0,0,.06);
+  font-size: .85em;
+}
+.reveal .check-box {
+  background: #fff;
+  border-left: 5px solid $marine-teal-2;
+  border-radius: .6rem;
+  padding: .6em .9em;
+  box-shadow: 0 1px 6px rgba(0,0,0,.06);
+  font-size: .85em;
+}
+
+// Title slide on a teal wash
+.reveal .quarto-title-block .title { font-size: 2.1em; }
+.reveal .quarto-title-block .subtitle { color: $marine-teal-3; }
