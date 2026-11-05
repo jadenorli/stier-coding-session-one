@@ -234,8 +234,8 @@ What happens to `orp` when the lights come on in the morning?
 **C.** Calculate the average temperature for each hour of the day:
 
 ```{r}
-tank |>
-  group_by(hour) |>
+tank %>%
+  group_by(hour) %>%
   summarize(mean_temperature = mean(temperature))
 ```
 
